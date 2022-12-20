@@ -15,12 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     theme_dd
+ * @package     local_dd
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @copyright   2022 Tresipunt
  */
 
-namespace theme_dd\cli;
+namespace local_dd\cli;
 
 use context_system;
 use moodle_exception;
@@ -33,7 +33,7 @@ require_once($CFG->dirroot . '/my/lib.php');
 /**
  * Class functionality
  *
- * @package theme_dd\cli
+ * @package local_dd\cli
  */
 class functionality {
 

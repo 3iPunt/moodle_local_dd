@@ -15,19 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     theme_dd
+ * @package     local_dd
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @copyright   2022 Tresipunt
  */
 
-namespace theme_dd\cli;
+namespace local_dd\cli;
 
 use dml_exception;
 
 /**
  * Class cfg
  *
- * @package theme_dd\cli
+ * @package local_dd\cli
  */
 class cfg {
 
@@ -56,7 +56,7 @@ class cfg {
         self::set('assignsubmission_file', 'maxbytes', 0);
         self::set('workshop', 'maxbytes', 0);
         // Theme.
-        self::set(null, 'theme', 'dd');
+        self::set(null, 'theme', 'cbe');
         self::theme($wwwroot);
         // Big Blue Button.
         self::set(null, 'bigbluebuttonbn_waitformoderator_default', true);

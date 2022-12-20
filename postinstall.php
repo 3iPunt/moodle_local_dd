@@ -18,23 +18,21 @@
  * CLI script Post Install.
  *
  *
- * @package     theme_dd
+ * @package     local_dd
  * @copyright   2022 Tresipunt
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use theme_dd\cli\capability;
-use theme_dd\cli\cfg;
-use theme_dd\cli\functionality;
-use theme_dd\cli\langs;
-use theme_dd\cli\nextcloud;
-use theme_dd\cli\registre;
-use theme_dd\cli\role;
-use theme_dd\cli\saml2;
+use local_dd\cli\capability;
+use local_dd\cli\cfg;
+use local_dd\cli\functionality;
+use local_dd\cli\langs;
+use local_dd\cli\nextcloud;
+use local_dd\cli\registre;
+use local_dd\cli\role;
+use local_dd\cli\saml2;
 
 define('CLI_SCRIPT', true);
-
-defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 
