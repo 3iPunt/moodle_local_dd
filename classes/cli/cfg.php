@@ -37,9 +37,10 @@ class cfg {
      * Execute.
      *
      * @param string $wwwroot
+     * @param string|null $timezone
      * @throws dml_exception
      */
-    public static function execute(string $wwwroot) {
+    public static function execute(string $wwwroot, string $timezone = null) {
         // Core.
         self::set(null, 'cron_enabled', true);
         self::set(null, 'guestloginbutton ', 0);
@@ -55,6 +56,15 @@ class cfg {
         self::set(null, 'forum_maxbytes', 512000);
         self::set('assignsubmission_file', 'maxbytes', 0);
         self::set('workshop', 'maxbytes', 0);
+        self::set(null, 'cookiehttponly', 1);
+        if (!is_null($timezone)) {
+            self::set(null, 'timezone', $timezone);
+        }
+        self::set(null, 'pathtophp', '/usr/bin/php');
+        self::set(null, 'pathtodu', '/usr/bin/du');
+        self::set(null, 'enableblogs', 0);
+        // SMTP.
+
         // Theme.
         self::set(null, 'theme', 'cbe');
         self::theme($wwwroot);
@@ -91,12 +101,18 @@ class cfg {
         if ($index !== false) {
             $defaulthost = substr($wwwroot, $index + 7);
             self::set('theme_cbe', 'host', $defaulthost);
-            self::set('theme_cbe', 'logourl', 'https://api.' . $defaulthost . '/img/logo.png');
-            self::set('theme_cbe', 'avatar_api_url', 'https://sso.' . $defaulthost . '/auth/realms/master/avatar-provider');
-            self::set('theme_cbe', 'avatar_other_users', 'https://api.' . $defaulthost . '/avatar/');
-            self::set('theme_cbe', 'avatar_profile_url', 'https://sso.' . $defaulthost . '/auth/realms/master/account');
-            self::set('theme_cbe', 'hostnccreate', 'https://nextcloud.' . $defaulthost . '/apps/files');
-            self::set('theme_cbe', 'aviso_legal', 'https://admin.' . $defaulthost . '/legal_text?lang=ca');
+            self::set('theme_cbe',
+                'logourl', 'https://api.' . $defaulthost . '/img/logo.png');
+            self::set('theme_cbe',
+                'avatar_api_url', 'https://sso.' . $defaulthost . '/auth/realms/master/avatar-provider');
+            self::set('theme_cbe',
+                'avatar_other_users', 'https://api.' . $defaulthost . '/avatar/');
+            self::set('theme_cbe',
+                'avatar_profile_url', 'https://sso.' . $defaulthost . '/auth/realms/master/account');
+            self::set('theme_cbe',
+                'hostnccreate', 'https://nextcloud.' . $defaulthost . '/apps/files');
+            self::set('theme_cbe',
+                'aviso_legal', 'https://admin.' . $defaulthost . '/legal_text?lang=ca');
         }
         self::set('theme_cbe', 'header_api', true);
         self::set('theme_cbe', 'avatar_api', true);

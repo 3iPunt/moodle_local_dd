@@ -45,12 +45,12 @@ class nextcloud {
      * Execute
      *
      * @param string $wwwroot
-     * @param string|null $ncadmin
-     * @param string|null $ncpass
+     * @param string $ncadmin
+     * @param string $ncpass
      * @throws dml_exception
      * @throws repository_exception
      */
-    public static function execute(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
+    public static function execute(string $wwwroot, string $ncadmin, string $ncpass) {
         // Repository NextCloud.
         self::repository($wwwroot, $ncadmin, $ncpass);
         // Assign Submission.
@@ -90,10 +90,10 @@ class nextcloud {
 
         // TODO
         // Create oAuth2.
-        cli_writeln('NextCloud oAuth2: Not configured!!');
+        cli_writeln('NextCloud oAuth2: Not configured!! - TODO');
         // Create NextCloud Repository Instance.
         // Problem: Current user don't have this capability: 'moodle/site:config'.
-        cli_writeln('NextCloud Repository: Not configured!!');
+        cli_writeln('NextCloud Repository: Not configured!! - TODO');
         return null;
     }
 
@@ -101,11 +101,11 @@ class nextcloud {
      * Assign Submission NextCloud.
      *
      * @param string $wwwroot
-     * @param string|null $ncadmin
-     * @param string|null $ncpass
+     * @param string $ncadmin
+     * @param string $ncpass
      * @throws dml_exception
      */
-    public static function submission(string $wwwroot, string $ncadmin = null, string $ncpass = null) {
+    protected static function submission(string $wwwroot, string $ncadmin, string $ncpass) {
         $index = strpos($wwwroot, 'moodle');
         if ($index !== false) {
             $defaulthost = substr($wwwroot, $index + 7);

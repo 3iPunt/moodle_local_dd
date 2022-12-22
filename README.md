@@ -46,15 +46,26 @@ Go to the URL:
 
 ## CLI
 
-      php local/dd/postinstall.php --wwwroot=moodle.dd.3ip.eu --ncadmin=admin --ncpass=1234 --sitename="Digital Democratic"--contactname="Contact Name"--contactemail="contact@test.xxx"
+      php local/dd/postinstall.php --wwwroot="moodle.mydomain.com" --createcertsaml=1 --timezone="Europe/Madrid" --ncadmin="admin" --ncpass="SuperSecret" --sitename="DD" --contactname="DD" --contactemail="moodle-info@mymailserver.com" --smtphost="smtp.mymailserver.com" --smtpport="587" --smtpuser="your_email@mymailserver.com" --smtppass="SuperSecret" --smtpprotocol="tls" --noreply="noreply@mymailserver.com" --emailprefix="[moodle]" --emailws="moodle-ws@mymailserver.com" --updatelangs=1
 
-
-   - wwwroot: domain without https://
+   - wwwroot: Domain without https:// 
+   - createcertsaml: Create SAML certificate - 1: yes, 0: not
+   - timezone: Time Zone. Ex: Europe/Madrid
    - ncadmin: NextCloud Admin User
    - ncpass: Nextcloud Admin Pass
    - sitename: Site Name
    - contactname: Contact Name
    - contactemail: Contact Email
+   - smtphost: SMTP Host
+   - smtpport: SMTP Port
+   - smtpuser: SMTP User
+   - smtppass: SMTP Password
+   - smtpprotocol: SMTP Protocol
+   - noreply: EMAIL No Reply
+   - emailprefix: Email Subject Prefix
+   - emailws: Email User WebService
+   - updatelangs: Update Languages Strings - 1: yes, 0: not
+
 
 ## CUSTOM LANGS
 

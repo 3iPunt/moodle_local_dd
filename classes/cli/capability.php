@@ -131,7 +131,7 @@ class capability {
      * @param $roleid
      * @throws dml_exception
      */
-    protected static function add($capability, $rolename, $roleid) {
+    public static function add($capability, $rolename, $roleid) {
         $contextid = context_system::instance();
         try {
             assign_capability($capability, CAP_ALLOW, $roleid, $contextid);
