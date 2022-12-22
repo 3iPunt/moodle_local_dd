@@ -97,14 +97,14 @@ class ws {
         if (empty($record)) {
             try {
                 $res = create_role($name, self::ROLE_WS, $desc, $arc);
-                cli_writeln('Create role: ' . self::ROLE_WS);
+                cli_writeln('Create role: ' . self::ROLE_WS . ' - ' . $res);
                 return $res;
             } catch (moodle_exception $e) {
                 cli_writeln('ERROR Create role (' . self::ROLE_WS . '): ' . $e->getMessage());
                 return 0;
             }
         } else {
-            cli_writeln('Role already exist: ' . self::ROLE_WS);
+            cli_writeln('Role already exist: ' . self::ROLE_WS . ' - ' . $record->id);
             return $record->id;
         }
     }
@@ -149,15 +149,16 @@ class ws {
                 $user->email = $email;
                 $user->description = $desc;
                 $user->confirmed = 1;
+                $user->mnethostid = 1;
                 $userid = user_create_user($user);
-                cli_writeln('Create User: ' . self::USERNAME_WS);
+                cli_writeln('Create User: ' . self::USERNAME_WS . ' - ' . $userid);
             } catch (moodle_exception $e) {
                 cli_writeln('ERROR Create user (' . self::USERNAME_WS . '): ' . $e->getMessage());
                 $userid = 0;
             }
         } else {
-            cli_writeln('User already exist: ' . self::USERNAME_WS);
             $userid = $userrecord->id;
+            cli_writeln('User already exist: ' . self::USERNAME_WS . ' - ' . $userid);
         }
 
         if ($userid > 0) {
@@ -236,22 +237,21 @@ class ws {
         if ($usertokens) {
             foreach ($usertokens as $usertoken) {
                 $token = $usertoken->token;
+                cli_writeln('Token already exist!: ' . $externalserviceid . ' - ' . $userid . ' -> Token: ' . $token);
             }
         }
         if ($token === null) {
             try {
-                external_generate_token(
+                $token = external_generate_token(
                     EXTERNAL_TOKEN_PERMANENT,
                     $externalserviceid,
                     $userid, context_system::instance());
 
-                cli_writeln('Create Token: ' . $externalserviceid . ' - ' . $userid);
+                cli_writeln('Create Token: ' . $externalserviceid . ' - ' . $userid . ' -> Token: ' . $token);
             } catch (\Exception $e) {
                 cli_writeln('ERROR Create Token (' . $externalserviceid . ' - ' . $userid . '): ' .
                     $e->getMessage());
             }
-        } else {
-            cli_writeln('Token already exist!: ' . $externalserviceid . ' - ' . $userid);
         }
     }
 
